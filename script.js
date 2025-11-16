@@ -37,3 +37,25 @@ window.addEventListener('scroll', () => {
     navbar.style.background = '#0f2027';
   }
 });
+
+const navLinks = document.querySelectorAll(".nav-links a");
+const sectionsAll = document.querySelectorAll(".page-section");
+
+// Hide all sections initially except home
+sectionsAll.forEach(sec => sec.classList.add("hidden"));
+document.getElementById("home").classList.remove("hidden");
+
+// On clicking menu item show only that section
+navLinks.forEach(link => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const targetId = link.getAttribute("href").substring(1);
+
+    sectionsAll.forEach(sec => sec.classList.add("hidden"));
+
+    document.getElementById(targetId).classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
